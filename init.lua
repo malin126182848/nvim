@@ -1,32 +1,31 @@
--- Please check NvChad docs if you're totally new to nvchad + dont know lua!!
--- This is an example init file in /lua/custom/
--- this init.lua can load stuffs etc too so treat it like your ~/.config/nvim/
-
-local autocmd = vim.api.nvim_create_autocmd
-local new_cmd = vim.api.nvim_create_user_command
-local opt = vim.opt
-
--- autocmds
-autocmd("FileType", {
-   pattern = "norg",
-   callback = function()
-      -- vim.opt.laststatus = 0
-      opt.number = false
-      opt.showtabline = 0
-      opt.cole = 1
-      opt.foldlevel = 10
-   end,
-})
-
 -- commands
 
--- I dont use shade.nvim/autosave.nvim all the time so made commands for them 
+-- I dont use shade.nvim/autosave.nvim all the time so made commands for them
 -- So this makes easy to lazy load them at cmds
 
+local new_cmd = vim.api.nvim_create_user_command
+local api = vim.api
+
 new_cmd("EnableShade", function()
-   require("shade").setup()
+  require("shade").setup()
 end, {})
 
 new_cmd("EnableAutosave", function()
-   require("autosave").setup()
+  require("autosave").setup()
 end, {})
+
+local autocmd = api.nvim_create_autocmd
+local opt_local = vim.opt_local
+
+-- autocmds
+-- pretty up norg ft!
+autocmd("FileType", {
+  pattern = "norg",
+  callback = function()
+    opt_local.number = false
+    opt_local.cole = 1
+    opt_local.foldlevel = 10
+    opt_local.foldenable = false
+    opt_local.signcolumn = "yes:2"
+  end,
+})

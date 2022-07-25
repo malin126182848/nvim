@@ -9,7 +9,7 @@ local b = null_ls.builtins
 local sources = {
 
    b.formatting.deno_fmt,
-   b.formatting.prettierd.with { filetypes = { "c", "cpp", "html", "markdown", "css" } },
+   b.formatting.prettierd.with { filetypes = { "html", "markdown", "css" } },
 
    -- Lua
    b.formatting.stylua,

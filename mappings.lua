@@ -23,6 +23,13 @@ M.shade = {
 
          "   toggle shade.nvim",
       },
+      
+      ["<leader>lz"] = {
+         function()
+            require("nvterm.terminal").send("lazygit", "vertical")
+         end,
+         "nvterm lazygit",
+      },
    },
 }
 

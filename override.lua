@@ -51,5 +51,49 @@ M.blankline = {
    },
 }
 
+M.alpha = {
+  header = {
+    val = {
+      "           ▄ ▄                   ",
+      "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ",
+      "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ",
+      "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ",
+      "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ",
+      "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄ ",
+      "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █ ",
+      "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █ ",
+      "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█     ",
+    },
+  },
+}
+
+M.mason = {
+  ensure_installed = {
+    -- lua stuff
+    "lua-language-server",
+    "stylua",
+
+    -- web dev
+    "css-lsp",
+    "html-lsp",
+    "typescript-language-server",
+    "deno",
+    "emmet-ls",
+    "json-lsp",
+    
+    -- cxx
+    "clangd",
+    "cmake-language-server",
+
+    -- shell
+    "shfmt",
+    "shellcheck",
+  },
+
+  github = {
+    download_url_template = "https://download.fastgit.org/%s/releases/download/%s/%s",
+  },
+}
+
 return M
 
