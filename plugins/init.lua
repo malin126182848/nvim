@@ -71,4 +71,19 @@ return {
       require "custom.plugins.lspconfig"
     end,
   },
+
+  ["mfussenegger/nvim-dap"] = {
+    module = "dap",
+    config = function()
+      require "custom.plugins.nvim_dap"
+    end,
+  },
+
+  ["rcarriga/nvim-dap-ui"] = {
+    module = "dapui",
+    after = "nvim-dap",
+    config = function()
+      require "custom.plugins.nvim_dap_ui"
+    end,
+  },
 }
