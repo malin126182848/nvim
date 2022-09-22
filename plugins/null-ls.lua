@@ -10,21 +10,20 @@ local sources = {
 
    -- webdev stuff
    b.formatting.deno_fmt,
-   b.formatting.prettier,
+   b.formatting.prettier { filetypes = {"html", "markdown", "css"} },
 
    -- Lua
    b.formatting.stylua,
 
    -- Shell
    b.formatting.shfmt,
-   b.diagnostics.shellcheck.with({
-      diagnostics_format = "#{m} [#{c}]",
-   }),
+   b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
    -- cpp
    b.formatting.clang_format.with({
       extra_args = { "-style={BasedOnStyle: Microsoft, AccessModifierOffset: -4, AllowAllConstructorInitializersOnNextLine: false, AllowAllParametersOfDeclarationOnNextLine: false, BreakConstructorInitializersBeforeComma: true, BinPackParameters: false, BreakConstructorInitializers: BeforeComma, ConstructorInitializerAllOnOneLineOrOnePerLine: false, DerivePointerAlignment: true, NamespaceIndentation: All}" },
    }),
+   b.formatting.rustfmt,
 }
 
 null_ls.setup {

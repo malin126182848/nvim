@@ -80,7 +80,7 @@ M.mason = {
     "deno",
     "emmet-ls",
     "json-lsp",
-    
+
     -- cxx
     "clangd",
     "cmake-language-server",
