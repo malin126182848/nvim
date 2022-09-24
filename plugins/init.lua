@@ -1,4 +1,4 @@
-local overrides = require "custom.plugins.overrides"
+local overrides = require("custom.plugins.overrides")
 
 return {
 
@@ -6,14 +6,13 @@ return {
 
   ["goolord/alpha-nvim"] = {
     disable = false,
-    cmd = "Alpha",
-    override_options = overrides.alpha,
+    -- override_options = overrides.alpha,
   },
 
   ["neovim/nvim-lspconfig"] = {
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.plugins.lspconfig"
+      require("plugins.configs.lspconfig")
+      require("custom.plugins.lspconfig")
     end,
   },
 
@@ -53,7 +52,7 @@ return {
   ["jose-elias-alvarez/null-ls.nvim"] = {
     after = "nvim-lspconfig",
     config = function()
-      require "custom.plugins.null-ls"
+      require("custom.plugins.null-ls")
     end,
   },
 
@@ -65,7 +64,7 @@ return {
       "TZFocus",
     },
     config = function()
-      require "custom.plugins.truezen"
+      require("custom.plugins.truezen")
     end,
   },
 
@@ -81,7 +80,7 @@ return {
   ["andreadev-it/shade.nvim"] = {
     module = "shade",
     config = function()
-      require "custom.plugins.shade"
+      require("custom.plugins.shade")
     end,
   },
 
@@ -117,7 +116,7 @@ return {
   ["mfussenegger/nvim-dap"] = {
     module = "dap",
     config = function()
-      require "custom.plugins.nvim_dap"
+      require("custom.plugins.nvim_dap")
     end,
   },
 
@@ -125,7 +124,7 @@ return {
     module = "dapui",
     after = "nvim-dap",
     config = function()
-      require "custom.plugins.nvim_dap_ui"
+      require("custom.plugins.nvim_dap_ui")
     end,
   },
 }
