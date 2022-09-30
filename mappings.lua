@@ -28,10 +28,9 @@ M.shade = {
 
 M.navigation = {
   n = {
-    ["H"] = { "^", "beginning of line"},
-    ["L"] = { "$", "end of line"},
-  }
-
+    ["H"] = { "^", "beginning of line" },
+    ["L"] = { "$", "end of line" },
+  },
 }
 
 M.lspconfig = {
@@ -57,9 +56,9 @@ M.dap = {
     ["<leader>di"] = { "<cmd>lua require'dap'.step_into()<CR>", "dap step into" },
     ["<leader>do"] = { "<cmd>lua require'dap'.step_out()<CR>", "dap step out" },
     ["<leader>db"] = { "<cmd>lua require'dap'.toggle_breakpoint()<CR>", "dap toggle breakpoint" },
-    ["<leader>dr"] = { "<cmd>lua require'dap'.repl.open()<CR>" , "dap repl open" },
-    ["<leader>dl"] = { "<cmd>lua require'dap'.run_last()<CR>" , "dap run last" },
-  }
+    ["<leader>dr"] = { "<cmd>lua require'dap'.repl.open()<CR>", "dap repl open" },
+    ["<leader>dl"] = { "<cmd>lua require'dap'.run_last()<CR>", "dap run last" },
+  },
 }
 
 return M

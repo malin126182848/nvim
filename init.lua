@@ -40,4 +40,4 @@ autocmd("VimLeavePre", {
   end,
 })
 
-require("custom.commands")
+require "custom.commands"
