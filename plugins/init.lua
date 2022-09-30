@@ -129,13 +129,14 @@ return {
   },
 
   ["p00f/clangd_extensions.nvim"] = {
-    ft = { "c", "cpp" },
+    after = "nvim-lspconfig",
     config = function()
-      require("custom.plugins.lsp.custom").clangd()
+      require("custom.plugins.lspconfig").clangd()
     end
   },
 
   ["Civitasv/cmake-tools.nvim"] = {
+    ft = { "c", "cpp", "cc", "cxx", "h", "hpp", "hxx" },
     config = function ()
       require("custom.plugins.cmake")
     end,
