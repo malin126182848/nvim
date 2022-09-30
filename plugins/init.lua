@@ -136,9 +136,8 @@ return {
   },
 
   ["Civitasv/cmake-tools.nvim"] = {
-    after = "nvim-dap",
     config = function ()
-    require("custom.plugins.cmake")
+      require("custom.plugins.cmake")
     end,
   },
 }
