@@ -36,6 +36,7 @@ M.navigation = {
 
 M.lspconfig = {
   n = {
+    ["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "lsp hover" },
     ["<leader>lh"] = {
       function()
         local buf = vim.api.nvim_get_current_buf()

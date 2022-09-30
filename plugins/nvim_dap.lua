@@ -41,18 +41,17 @@ dap.listeners.after['event_initialized']['me'] = function()
       end
     end
   end
-  api.nvim_set_keymap(
-  'n', 'K', '<cmd>lua require("dapui").eval()<CR>', { silent = true })
+  api.nvim_set_keymap('n', 'K', '<cmd>lua require("dapui").eval()<CR>', { silent = true })
 end
 
 dap.listeners.after['event_terminated']['me'] = function()
   for _, keymap in pairs(keymap_restore) do
     api.nvim_buf_set_keymap(
-    keymap.buffer,
-    keymap.mode,
-    keymap.lhs,
-    keymap.rhs,
-    { silent = keymap.silent == 1 }
+      keymap.buffer,
+      keymap.mode,
+      keymap.lhs,
+      keymap.rhs,
+      { silent = keymap.silent == 1 }
     )
   end
   keymap_restore = {}
@@ -80,6 +79,7 @@ dap.configurations.cpp = {
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = true,
+    terminal = 'integrated',
   },
 }
 

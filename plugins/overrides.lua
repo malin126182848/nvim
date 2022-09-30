@@ -86,6 +86,7 @@ M.mason = {
     "cmake-language-server",
 
     -- shell
+    "bash-language-server",
     "shfmt",
     "shellcheck",
   },

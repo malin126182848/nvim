@@ -6,7 +6,7 @@ return {
 
   ["goolord/alpha-nvim"] = {
     disable = false,
-    -- override_options = overrides.alpha,
+    override_options = overrides.alpha,
   },
 
   ["neovim/nvim-lspconfig"] = {
@@ -133,5 +133,12 @@ return {
     config = function()
       require("custom.plugins.lsp.custom").clangd()
     end
+  },
+
+  ["Civitasv/cmake-tools.nvim"] = {
+    after = "nvim-dap",
+    config = function ()
+    require("custom.plugins.cmake")
+    end,
   },
 }

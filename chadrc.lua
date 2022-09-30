@@ -4,8 +4,8 @@ M.plugins = require("custom.plugins")
 
 M.ui = {
   -- theme stuff
-  theme = "onedark",
-  theme_toggle = { "onedark", "one_light" },
+	theme = "vscode_dark",
+	theme_toggle = { "catppuccin_latte", "vscode_dark" },
 
   transparency = false,
   -- highlight groups!
