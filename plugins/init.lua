@@ -128,6 +128,13 @@ return {
     end,
   },
 
+  ["theHamsta/nvim-dap-virtual-text"] = {
+    after = "nvim-dap",
+    config = function()
+      require("nvim-dap-virtual-text").setup()
+    end,
+  },
+
   ["p00f/clangd_extensions.nvim"] = {
     after = "nvim-lspconfig",
     config = function()
@@ -136,7 +143,6 @@ return {
   },
 
   ["Civitasv/cmake-tools.nvim"] = {
-    ft = { "c", "cpp", "cc", "cxx", "h", "hpp", "hxx" },
     config = function()
       require "custom.plugins.cmake"
     end,

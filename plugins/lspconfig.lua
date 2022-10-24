@@ -105,11 +105,13 @@ M.clangd = function()
         "--background-index",
         "--offset-encoding=utf-16", -- temporary fix to stop null-ls
         "--enable-config",
-        "--completion-style=detailed",
         "--clang-tidy",
+        "--clang-tidy-checks=*",
         "--all-scopes-completion",
-        "--pch-storage=memory",
+        "--cross-file-rename",
+        "--completion-style=detailed",
         "--suggest-missing-includes",
+        "--pch-storage=memory",
       },
       -- args = {
       -- },
@@ -120,12 +122,29 @@ M.clangd = function()
       },
     },
     extensions = {
-      autosetHint = true,
-      inlay_hints = {
-        highlight = "DiagnosticInfo",
-      },
       ast = {
-        type = "",
+        role_icons = {
+          type = "",
+          declaration = "",
+          expression = "",
+          specifier = "",
+          statement = "",
+          ["template argument"] = "",
+        },
+
+        kind_icons = {
+          Compound = "",
+          Recovery = "",
+          TranslationUnit = "",
+          PackExpansion = "",
+          TemplateTypeParm = "",
+          TemplateTemplateParm = "",
+          TemplateParamObject = "",
+        },
+
+        highlights = {
+          detail = "Comment",
+        },
       },
     },
   }
