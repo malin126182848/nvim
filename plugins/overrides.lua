@@ -18,6 +18,9 @@ M.treesitter = {
     "lua",
     "norg",
   },
+  indent = {
+    enable = false
+  },
 }
 
 M.nvimtree = {
@@ -89,10 +92,6 @@ M.mason = {
     "bash-language-server",
     "shfmt",
     "shellcheck",
-  },
-
-  github = {
-    download_url_template = "https://download.fastgit.org/%s/releases/download/%s/%s",
   },
 }
 

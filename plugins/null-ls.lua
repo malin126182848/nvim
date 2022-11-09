@@ -20,11 +20,7 @@ local sources = {
   b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
   -- cpp
-  b.formatting.clang_format.with {
-    extra_args = {
-      "-style={BasedOnStyle: Microsoft, AccessModifierOffset: -4, AllowAllConstructorInitializersOnNextLine: false, AllowAllParametersOfDeclarationOnNextLine: false, BreakConstructorInitializersBeforeComma: true, BinPackParameters: false, BreakConstructorInitializers: BeforeComma, ConstructorInitializerAllOnOneLineOrOnePerLine: false, DerivePointerAlignment: true, NamespaceIndentation: All}",
-    },
-  },
+  b.formatting.clang_format,
   b.formatting.rustfmt,
 }
 
