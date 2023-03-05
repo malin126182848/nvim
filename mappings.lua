@@ -61,4 +61,25 @@ M.dap = {
   },
 }
 
+M.telescope = {
+  v = {
+    ["<leader>ff"] = {
+      function()
+        local tb = require "telescope.builtin"
+        local text = vim.getVisualSelection()
+        tb.find_files({ default_text = text })
+      end,
+      "find file",
+    },
+    ["<leader>fw"] = {
+      function()
+        local tb = require "telescope.builtin"
+        local text = vim.getVisualSelection()
+        tb.live_grep({ default_text = text })
+      end,
+      "live grep",
+    },
+  },
+}
+
 return M

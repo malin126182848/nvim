@@ -4,6 +4,10 @@ return {
 
   ----------------------------------------- default plugins ------------------------------------------
 
+  ["folke/which-key.nvim"] = {
+    disable = false,
+  },
+
   ["goolord/alpha-nvim"] = {
     disable = false,
     override_options = overrides.alpha,
@@ -17,7 +21,7 @@ return {
   },
 
   -- override default configs
-  ["kyazdani42/nvim-tree.lua"] = {
+  ["nvim-tree/nvim-tree.lua"] = {
     override_options = overrides.nvimtree,
   },
 
@@ -31,6 +35,10 @@ return {
 
   ["williamboman/mason.nvim"] = {
     override_options = overrides.mason,
+  },
+
+  ["nvim-telescope/telescope.nvim"] = {
+    override_options = overrides.telescope,
   },
 
   --------------------------------------------- custom plugins ----------------------------------------------
@@ -147,4 +155,36 @@ return {
       require "custom.plugins.cmake"
     end,
   },
+
+  ["nmac427/guess-indent.nvim"] = {
+    config = function()
+      require("guess-indent").setup {}
+    end,
+  },
+
+  ["sindrets/diffview.nvim"] = {
+    requires = { 'nvim-lua/plenary.nvim' },
+  },
+
+  ["tanvirtin/vgit.nvim"] = {
+    after = "ui",
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require("vgit").setup {}
+      -- require "custom.plugins.vgit"
+    end,
+  },
+
+  -- ["anuvyklack/windows.nvim"] = {
+  --   requires = {
+  --     "anuvyklack/middleclass",
+  --     "anuvyklack/animation.nvim"
+  --   },
+  --   config = function()
+  --     vim.o.winwidth = 10
+  --     vim.o.winminwidth = 10
+  --     vim.o.equalalways = false
+  --     require('windows').setup()
+  --   end
+  -- },
 }

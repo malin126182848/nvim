@@ -18,9 +18,6 @@ M.treesitter = {
     "lua",
     "norg",
   },
-  indent = {
-    enable = false
-  },
 }
 
 M.nvimtree = {
@@ -57,11 +54,11 @@ M.blankline = {
 M.alpha = {
   header = {
     val = {
-      "           ▄ ▄                   ",
-      "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ",
-      "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ",
-      "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ",
-      "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ",
+      "           ▄ ▄                    ",
+      "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄      ",
+      "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █      ",
+      "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █      ",
+      "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄   ",
       "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄ ",
       "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █ ",
       "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █ ",
@@ -92,6 +89,12 @@ M.mason = {
     "bash-language-server",
     "shfmt",
     "shellcheck",
+  },
+}
+
+M.telescope = {
+  defaults = {
+    file_ignore_patterns = { "node_modules", ".cache/clangd", "/mocs?_" },
   },
 }
 

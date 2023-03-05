@@ -18,18 +18,6 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-lspconfig.sumneko_lua.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
-
 lspconfig.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
