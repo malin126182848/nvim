@@ -22,7 +22,7 @@ if vim.fn.has("nvim-0.8") == 1 then
   vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
 end
 
-if string.match(os.getenv("SHELL"), "zsh.exe") then
+if os.getenv("SHELL") and string.match(os.getenv("SHELL"), "zsh.exe") then
   vim.opt.shell = string.gsub(vim.opt.shell["_value"], "\\", "/")
   vim.opt.shellcmdflag = "-c"
 end
