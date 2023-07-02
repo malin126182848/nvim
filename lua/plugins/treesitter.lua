@@ -35,7 +35,7 @@ return {
         "gitignore",
         "go",
         "graphql",
-        "help",
+        "vimdoc",
         "html",
         "http",
         "java",
@@ -70,7 +70,7 @@ return {
         "yaml",
         -- "wgsl",
         "json",
-        -- "markdown",
+        "markdown",
       },
       matchup = {
         enable = true,

@@ -50,7 +50,7 @@ return {
         svelte = {},
         -- eslint = {},
         html = {},
-        gopls = {},
+        gopls = false,
         marksman = {},
         pyright = {},
         rust_analyzer = {
@@ -84,7 +84,7 @@ return {
                 },
               },
               diagnostics = {
-                -- enable = false,
+                enable = false,
                 globals = { "vim" },
                 groupSeverity = {
                   strong = "Warning",
