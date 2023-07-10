@@ -4,6 +4,7 @@ return {
   {
     "b0o/incline.nvim",
     event = "BufReadPre",
+    enabled = false,
     config = function()
       local colors = require("tokyonight.colors").setup()
       require("incline").setup({
@@ -31,7 +32,7 @@ return {
       { "anuvyklack/middleclass" },
       { "anuvyklack/animation.nvim", enabled = false },
     },
-    keys = { { "<leader>Z", "<cmd>WindowsMaximize<cr>", desc = "Zoom" } },
+    keys = { { "<leader>m", "<cmd>WindowsMaximize<cr>", desc = "Zoom" } },
     config = function()
       vim.o.winwidth = 5
       vim.o.equalalways = false
@@ -42,13 +43,31 @@ return {
   },
 
   -- scrollbar
+  { "lewis6991/satellite.nvim", opts = {}, event = "VeryLazy", enabled = false },
+  {
+    "echasnovski/mini.map",
+    main = "mini.map",
+    event = "VeryLazy",
+    enabled = false,
+    config = function()
+      local map = require("mini.map")
+      map.setup({
+        integrations = {
+          map.gen_integration.builtin_search(),
+          map.gen_integration.gitsigns(),
+          map.gen_integration.diagnostic(),
+        },
+      })
+      map.open()
+    end,
+  },
   {
     "petertriho/nvim-scrollbar",
     event = "BufReadPost",
+    enabled = false,
     config = function()
-      local scrollbar = require("scrollbar")
       local colors = require("tokyonight.colors").setup()
-      scrollbar.setup({
+      require("scrollbar").setup({
         handle = { color = colors.bg_highlight },
         excluded_filetypes = { "prompt", "TelescopePrompt", "noice", "notify" },
         marks = {
@@ -69,8 +88,8 @@ return {
     event = "VeryLazy",
     opts = {
       themes = {
-        markdown = { colorscheme = "tokyonight-storm" },
-        help = { colorscheme = "oxocarbon", background = "dark" },
+        markdown = { colorscheme = "catppuccin" },
+        help = { colorscheme = "catppuccin", background = "dark" },
       },
     },
   },
@@ -78,12 +97,12 @@ return {
   -- silly drops
   {
     "folke/drop.nvim",
-    event = "VeryLazy",
     enabled = false,
+    event = "VeryLazy",
     config = function()
       math.randomseed(os.time())
-      local theme = ({ "stars", "snow" })[math.random(1, 3)]
-      require("drop").setup({ theme = theme })
+      -- local theme = ({ "stars", "snow" })[math.random(1, 3)]
+      require("drop").setup({ theme = "spring" })
     end,
   },
 
@@ -138,37 +157,37 @@ return {
   },
   {
     "SmiteshP/nvim-navic",
-    opts = function()
-      return {
-        icons = {
-          File = " ",
-          Module = " ",
-          Namespace = " ",
-          Package = " ",
-          Class = " ",
-          Method = " ",
-          Property = " ",
-          Field = " ",
-          Constructor = " ",
-          Enum = "練",
-          Interface = "練",
-          Function = " ",
-          Variable = " ",
-          Constant = " ",
-          String = " ",
-          Number = " ",
-          Boolean = "◩ ",
-          Array = " ",
-          Object = " ",
-          Key = " ",
-          Null = "ﳠ ",
-          EnumMember = " ",
-          Struct = " ",
-          Event = " ",
-          Operator = " ",
-          TypeParameter = " ",
-        },
-      }
-    end,
+    -- opts = function()
+    --   return {
+    --     icons = {
+    --       File = " ",
+    --       Module = " ",
+    --       Namespace = " ",
+    --       Package = " ",
+    --       Class = " ",
+    --       Method = " ",
+    --       Property = " ",
+    --       Field = " ",
+    --       Constructor = " ",
+    --       Enum = "練",
+    --       Interface = "練",
+    --       Function = " ",
+    --       Variable = " ",
+    --       Constant = " ",
+    --       String = " ",
+    --       Number = " ",
+    --       Boolean = "◩ ",
+    --       Array = " ",
+    --       Object = " ",
+    --       Key = " ",
+    --       Null = "ﳠ ",
+    --       EnumMember = " ",
+    --       Struct = " ",
+    --       Event = " ",
+    --       Operator = " ",
+    --       TypeParameter = " ",
+    --     },
+    --   }
+    -- end,
   },
 }

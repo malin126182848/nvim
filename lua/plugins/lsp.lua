@@ -1,34 +1,15 @@
 return {
-  -- neodev
-  {
-    "folke/neodev.nvim",
-    opts = {
-      debug = true,
-      experimental = {
-        pathStrict = true,
-      },
-      library = {
-        runtime = "~/projects/neovim/runtime/",
-      },
-    },
-  },
-
   -- tools
   {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "prettierd",
         "stylua",
         "selene",
         "luacheck",
-        "eslint_d",
         "shellcheck",
-        -- "deno",
         "shfmt",
-        "black",
-        "isort",
-        "flake8",
+        "cmake-language-server",
       },
     },
   },
@@ -36,38 +17,87 @@ return {
   -- lsp servers
   {
     "neovim/nvim-lspconfig",
+    init = function()
+      local ok, wf = pcall(require, "vim.lsp._watchfiles")
+      if ok then
+        wf._watchfunc = function()
+          return function() end
+        end
+      end
+    end,
     opts = {
+      inlay_hints = { enabled = true },
       ---@type lspconfig.options
       servers = {
-        astro = {},
         ansiblels = {},
         bashls = {},
         clangd = {},
-        denols = false,
+        -- denols = {},
         cssls = {},
         dockerls = {},
-        tsserver = {},
-        svelte = {},
-        -- eslint = {},
-        html = {},
-        gopls = false,
-        marksman = {},
-        pyright = {},
-        rust_analyzer = {
+        ruff_lsp = {},
+        tailwindcss = {
+          root_dir = function(...)
+            return require("lspconfig.util").root_pattern(".git")(...)
+          end,
+        },
+        tsserver = {
+          root_dir = function(...)
+            return require("lspconfig.util").root_pattern(".git")(...)
+          end,
+          single_file_support = false,
           settings = {
-            ["rust-analyzer"] = {
-              procMacro = { enable = true },
-              cargo = { allFeatures = true },
-              checkOnSave = {
-                command = "clippy",
-                extraArgs = { "--no-deps" },
+            typescript = {
+              inlayHints = {
+                includeInlayParameterNameHints = "literal",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = false,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+            javascript = {
+              inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
               },
             },
           },
         },
-        yamlls = {},
+        -- svelte = {},
+        html = {},
+        -- gopls = {},
+        marksman = {},
+        pyright = {
+          enalbed = false,
+        },
+        rust_analyzer = {
+          -- settings = {
+          --   ["rust-analyzer"] = {
+          --     procMacro = { enable = true },
+          --     cargo = { allFeatures = true },
+          --     checkOnSave = {
+          --       command = "clippy",
+          --       extraArgs = { "--no-deps" },
+          --     },
+          --   },
+          -- },
+        },
+        yamlls = {
+          settings = {
+            yaml = {
+              keyOrdering = false,
+            },
+          },
+        },
         lua_ls = {
-          -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
           single_file_support = true,
           settings = {
             Lua = {
@@ -80,11 +110,26 @@ return {
               },
               misc = {
                 parameters = {
-                  "--log-level=trace",
+                  -- "--log-level=trace",
                 },
               },
+              hint = {
+                enable = true,
+                setType = false,
+                paramType = true,
+                paramName = "Disable",
+                semicolon = "Disable",
+                arrayIndex = "Disable",
+              },
+              doc = {
+                privateName = { "^_" },
+              },
+              type = {
+                castNumberToInteger = true,
+              },
               diagnostics = {
-                enable = false,
+                disable = { "incomplete-signature-doc", "trailing-space" },
+                -- enable = false,
                 globals = { "vim" },
                 groupSeverity = {
                   strong = "Warning",
@@ -117,16 +162,16 @@ return {
             },
           },
         },
-        teal_ls = false,
         vimls = {},
-        -- tailwindcss = {},
       },
+      setup = {},
     },
   },
 
   {
     "neovim/nvim-lspconfig",
     opts = {
+      diagnostics = { virtual_text = { prefix = "icons" } },
       setup = {
         clangd = function(_, opts)
           opts.capabilities.offsetEncoding = { "utf-16" }
@@ -138,36 +183,34 @@ return {
   -- null-ls
   {
     "jose-elias-alvarez/null-ls.nvim",
-    config = function()
+    opts = function()
       local nls = require("null-ls")
-      nls.setup({
-        debounce = 150,
-        save_after_format = false,
+      return {
+        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
         sources = {
-          -- nls.builtins.formatting.prettierd,
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.fish_indent,
-          -- nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
-          -- nls.builtins.formatting.eslint_d,
-          -- nls.builtins.diagnostics.shellcheck,
+          nls.builtins.diagnostics.shellcheck,
           nls.builtins.formatting.shfmt,
+
+          nls.builtins.formatting.prettier.with({ filetypes = { "markdown" } }),
           nls.builtins.diagnostics.markdownlint,
-          -- nls.builtins.diagnostics.luacheck,
-          nls.builtins.formatting.prettierd.with({
-            filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
-          }),
+          nls.builtins.diagnostics.deno_lint,
           nls.builtins.diagnostics.selene.with({
             condition = function(utils)
               return utils.root_has_file({ "selene.toml" })
             end,
           }),
-          -- nls.builtins.code_actions.gitsigns,
           nls.builtins.formatting.isort,
           nls.builtins.formatting.black,
           nls.builtins.diagnostics.flake8,
+          nls.builtins.diagnostics.luacheck.with({
+            condition = function(utils)
+              return utils.root_has_file({ ".luacheckrc" })
+            end,
+          }),
         },
-        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
-      })
+      }
     end,
   },
 }
