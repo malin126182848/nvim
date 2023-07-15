@@ -20,8 +20,10 @@ vim.o.foldcolumn = "0"
 --   vim.opt.cmdheight = 0
 --   vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
 -- end
-
-if os.getenv("SHELL") and string.match(os.getenv("SHELL"), "zsh.exe") then
+local _shell = os.getenv("SHELL")
+if _shell and string.match(_shell, "zsh.exe") then
   vim.go.shell = "zsh"
   vim.opt.shellcmdflag = "-c"
 end
+
+vim.b.autoformat = false

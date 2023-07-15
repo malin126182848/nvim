@@ -4,12 +4,14 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "tree-sitter-cli",
         "stylua",
         "selene",
         "luacheck",
         "shellcheck",
         "shfmt",
         "cmakelint",
+        "markdownlint",
       },
     },
   },
@@ -33,6 +35,7 @@ return {
         bashls = {},
         clangd = {
           keys = {
+            { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
             { "<leader>dr", "<cmd>CMakeDebug<cr>", desc = "CMake Debug" },
           },
           on_new_config = function(new_config, _)
