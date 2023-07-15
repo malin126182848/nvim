@@ -44,11 +44,11 @@ return {
     "ThePrimeagen/refactoring.nvim",
     keys = {
       {
-        "<leader>r",
+        "<leader>rr",
         function()
           require("refactoring").select_refactor({})
         end,
-        mode = "v",
+        mode = { "n", "x" },
         noremap = true,
         silent = true,
         expr = false,

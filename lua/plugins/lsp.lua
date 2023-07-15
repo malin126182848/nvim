@@ -9,7 +9,7 @@ return {
         "luacheck",
         "shellcheck",
         "shfmt",
-        "cmake-language-server",
+        "cmakelint",
       },
     },
   },
@@ -163,6 +163,7 @@ return {
           },
         },
         vimls = {},
+        neocmake = {},
       },
       setup = {},
     },
@@ -209,6 +210,7 @@ return {
               return utils.root_has_file({ ".luacheckrc" })
             end,
           }),
+          nls.builtins.diagnostics.cmake_lint,
         },
       }
     end,

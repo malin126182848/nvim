@@ -63,6 +63,9 @@ return {
       matchup = {
         enable = true,
       },
+      indent = {
+        enable = false,
+      },
       -- highlight = { enable = true },
       query_linter = {
         enable = true,

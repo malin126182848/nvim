@@ -32,4 +32,9 @@ return {
       end)
     end,
   },
+
+  {
+    "nmac427/guess-indent.nvim",
+    opts = {},
+  },
 }
