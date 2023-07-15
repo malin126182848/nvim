@@ -32,6 +32,9 @@ return {
         ansiblels = {},
         bashls = {},
         clangd = {
+          keys = {
+            { "<leader>dr", "<cmd>CMakeDebug<cr>", desc = "CMake Debug" },
+          },
           on_new_config = function(new_config, _)
             local status, cmake = pcall(require, "cmake-tools")
             if status then

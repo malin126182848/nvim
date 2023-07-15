@@ -63,9 +63,9 @@ return {
     event = "BufRead",
     keys = {
       { "<leader>cg", "<cmd>CMakeGenerate<cr>", desc = "CMake Generate" },
-      { "<leader>df", "<cmd>CMakeDebug<cr>", desc = "CMake Debug" },
     },
     opts = {
+      cmake_build_directory = "build",
       cmake_generate_options = {
         "-GNinja",
         "-DCMAKE_EXPORT_COMPILE_COMMANDS=1",
