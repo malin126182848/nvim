@@ -92,6 +92,7 @@ return {
       },
     },
   },
+
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {

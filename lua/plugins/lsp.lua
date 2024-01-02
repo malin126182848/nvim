@@ -6,11 +6,9 @@ return {
       ensure_installed = {
         "tree-sitter-cli",
         "stylua",
-        "selene",
         "luacheck",
         "shellcheck",
         "shfmt",
-        "cmakelint",
         "markdownlint",
       },
     },
@@ -29,156 +27,6 @@ return {
     end,
     opts = {
       inlay_hints = { enabled = true },
-      ---@type lspconfig.options
-      servers = {
-        ansiblels = {},
-        bashls = {},
-        clangd = {
-          keys = {
-            { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
-            { "<leader>dr", "<cmd>CMakeDebug<cr>", desc = "CMake Debug" },
-          },
-          on_new_config = function(new_config, _)
-            local status, cmake = pcall(require, "cmake-tools")
-            if status then
-              cmake.clangd_on_new_config(new_config)
-            end
-          end,
-        },
-        -- denols = {},
-        cssls = {},
-        dockerls = {},
-        ruff_lsp = {},
-        tailwindcss = {
-          root_dir = function(...)
-            return require("lspconfig.util").root_pattern(".git")(...)
-          end,
-        },
-        tsserver = {
-          root_dir = function(...)
-            return require("lspconfig.util").root_pattern(".git")(...)
-          end,
-          single_file_support = false,
-          settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "literal",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = false,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-            javascript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-          },
-        },
-        -- svelte = {},
-        html = {},
-        -- gopls = {},
-        marksman = {},
-        pyright = {
-          enalbed = false,
-        },
-        rust_analyzer = {
-          -- settings = {
-          --   ["rust-analyzer"] = {
-          --     procMacro = { enable = true },
-          --     cargo = { allFeatures = true },
-          --     checkOnSave = {
-          --       command = "clippy",
-          --       extraArgs = { "--no-deps" },
-          --     },
-          --   },
-          -- },
-        },
-        yamlls = {
-          settings = {
-            yaml = {
-              keyOrdering = false,
-            },
-          },
-        },
-        lua_ls = {
-          single_file_support = true,
-          settings = {
-            Lua = {
-              workspace = {
-                checkThirdParty = false,
-              },
-              completion = {
-                workspaceWord = true,
-                callSnippet = "Both",
-              },
-              misc = {
-                parameters = {
-                  -- "--log-level=trace",
-                },
-              },
-              hint = {
-                enable = true,
-                setType = false,
-                paramType = true,
-                paramName = "Disable",
-                semicolon = "Disable",
-                arrayIndex = "Disable",
-              },
-              doc = {
-                privateName = { "^_" },
-              },
-              type = {
-                castNumberToInteger = true,
-              },
-              diagnostics = {
-                disable = { "incomplete-signature-doc", "trailing-space" },
-                -- enable = false,
-                globals = { "vim" },
-                groupSeverity = {
-                  strong = "Warning",
-                  strict = "Warning",
-                },
-                groupFileStatus = {
-                  ["ambiguity"] = "Opened",
-                  ["await"] = "Opened",
-                  ["codestyle"] = "None",
-                  ["duplicate"] = "Opened",
-                  ["global"] = "Opened",
-                  ["luadoc"] = "Opened",
-                  ["redefined"] = "Opened",
-                  ["strict"] = "Opened",
-                  ["strong"] = "Opened",
-                  ["type-check"] = "Opened",
-                  ["unbalanced"] = "Opened",
-                  ["unused"] = "Opened",
-                },
-                unusedLocalExclude = { "_*" },
-              },
-              format = {
-                enable = false,
-                defaultConfig = {
-                  indent_style = "space",
-                  indent_size = "2",
-                  continuation_indent_size = "2",
-                },
-              },
-            },
-          },
-        },
-        vimls = {},
-        neocmake = {},
-      },
-      setup = {},
     },
   },
 
@@ -192,40 +40,5 @@ return {
         end,
       },
     },
-  },
-
-  -- null-ls
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    opts = function()
-      local nls = require("null-ls")
-      return {
-        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
-        sources = {
-          nls.builtins.formatting.stylua,
-          nls.builtins.formatting.fish_indent,
-          nls.builtins.diagnostics.shellcheck,
-          nls.builtins.formatting.shfmt,
-
-          nls.builtins.formatting.prettier.with({ filetypes = { "markdown" } }),
-          nls.builtins.diagnostics.markdownlint,
-          nls.builtins.diagnostics.deno_lint,
-          nls.builtins.diagnostics.selene.with({
-            condition = function(utils)
-              return utils.root_has_file({ "selene.toml" })
-            end,
-          }),
-          nls.builtins.formatting.isort,
-          nls.builtins.formatting.black,
-          nls.builtins.diagnostics.flake8,
-          nls.builtins.diagnostics.luacheck.with({
-            condition = function(utils)
-              return utils.root_has_file({ ".luacheckrc" })
-            end,
-          }),
-          nls.builtins.diagnostics.cmake_lint,
-        },
-      }
-    end,
   },
 }

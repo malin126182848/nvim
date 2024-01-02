@@ -52,12 +52,6 @@ return {
   },
 
   {
-    "jackMort/ChatGPT.nvim",
-    cmd = { "ChatGPTActAs", "ChatGPT" },
-    opts = {},
-  },
-
-  {
     "Civitasv/cmake-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     event = "BufRead",
