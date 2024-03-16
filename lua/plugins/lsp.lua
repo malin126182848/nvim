@@ -10,6 +10,8 @@ return {
         "shellcheck",
         "shfmt",
         "markdownlint",
+        "cmakelint",
+        "hadolint",
       },
     },
   },

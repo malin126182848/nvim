@@ -15,6 +15,8 @@
 -- vim.o.foldenable = true
 -- vim.o.foldcolumn = "0"
 
+vim.o.autoforamt = false
+
 local _shell = os.getenv("SHELL")
 if _shell and string.match(_shell, "zsh.exe") then
   vim.go.shell = "zsh"
